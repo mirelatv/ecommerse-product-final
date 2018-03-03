@@ -24,11 +24,11 @@ $(document).ready(function () {
       console.log(children);
 
       children.forEach(function (element) {
-        const div = ` <div id= ${element.category_id} class="listProductos col s3 m3  l3">
+        const div = ` <div id= ${element.category_id} class="listProductos  card col s12 m3  l3" style="height: 280px; width:250px; margin:8px 9px " >
        <img src="${element.thumbnail} alt="">
-       <p>${element.title}</p>
-       <p>${element.price}</p>
-       <p>${element.category_id}</p>
+       <p class="center-align">${element.title}</p>
+       <p class="center-align " style="color: blue;"> costo :${element.price} </p>
+       <p class="center-align">${element.category_id}</p>
        </div>`
         $(".row").append(div);
        // $(".listProductos").hide();
