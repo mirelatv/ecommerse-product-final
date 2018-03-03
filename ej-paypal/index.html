@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+  <title>Prueba Paypal</title>
+</head>
+
+<body>
+  <div id="paypal-button"></div>
+
+  <script>
+    paypal.Button.render({
+      env: 'production', // Or 'sandbox',
+
+      client: {
+        sandbox: 'AUbwyqI0Qv7-Jx560ktdg_rwLNaT35-a3FYA7-SdVf9i7dTbYD56hMqXC4YGQZr0RHMHOKhHlUJblkfk',
+        production: 'AWStTtI9jh03288Nu2oVlmmgFz-3lXcnm7Jtwj4QZ55oPw2m8cDK4vsyU_vORxwtEfjoygFEOAiM0LWO'
+      },
+
+
+      locale: 'es_ES',
+
+      commit: true, // Show a 'Pay Now' button
+
+      style: {
+        color: 'blue',
+        size: 'responsive',
+        shape: 'rect',
+
+      },
+
+      payment: function (data, actions) {
+        return actions.payment.create({
+          payment: {
+            transactions: [{
+              amount: {
+                total: '1.00', // enviar precio en esta función 
+                currency: 'USD'
+              }
+            }]
+          }
+        });
+      },
+
+
+      onAuthorize: function (data, actions) {
+        return actions.payment.execute().then(function (payment) {
+          // The payment is complete!
+          // You can now show a confirmation message to the customer
+        });
+      },
+
+    }, '#paypal-button');
+  </script>
+</body>
+
+</html>

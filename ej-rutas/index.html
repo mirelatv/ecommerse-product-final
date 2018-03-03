@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <script src="page.js"></script>
+</head>
+<body>
+  <h1>Trying out page</h1>
+  <p></p>
+  <ul>
+  	<li><a href="/">/</a></li>
+  	<li><a href="#whoop">#whoop</a></li>
+  	<li><a href="/about">/about</a></li>
+  	<li><a href="/user">/user</a></li>
+  	<li><a href="/user/me">/user/me</a></li>
+  	<li><a href="/not-fount?foo=bar">/not-found</a></li>
+  </ul>
+  <script>
+    /*page('ruta', callback)*/
+    page('/', index)
+    page('/about', about)
+    page('/user', user)
+    page('/user/:userName', user)
+    page('*', notFound)
+    page()
+
+    function index() {
+      document.querySelector('p')
+        .textContent = 'viewing index'
+    }
+    function about() {
+      document.querySelector('p')
+        .textContent = 'viewing about'
+    }
+    function user() {
+      document.querySelector('p')
+        .textContent = 'viewing user'
+    }
+    function user(ctx) {
+      document.querySelector('p')
+        .textContent = 'viewing user'+(ctx.params.userName) || ''
+    }
+    function notFound() {
+      document.querySelector('p')
+        .textContent = 'notFound'
+    }
+  </script>
+</body>
+</html>
