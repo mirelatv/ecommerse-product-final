@@ -10,8 +10,8 @@ $(document).ready(function () {
       var categorias = data.children_categories
       console.log(categorias)
       categorias.forEach(function (element) {
-        const li = `<li class="lisCategorias" data-id=${element.id}><a href="">${element.name}</a></li>`
-        $(".fatherList").append(li);
+        const li = `<li  class="lisCategorias" data-id=${element.id}><a href="">${element.name}</a></li>`
+        $(".right").append(li);
       });
     }
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
       console.log(children);
 
       children.forEach(function (element) {
-        const div = ` <div id= ${element.category_id} class="listProductos">
+        const div = ` <div id= ${element.category_id} class="listProductos col s3 m3  l3">
        <img src="${element.thumbnail} alt="">
        <p>${element.title}</p>
        <p>${element.price}</p>
