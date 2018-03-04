@@ -1,5 +1,28 @@
 $(document).ready(function () {
 
+  /*page('ruta', callback)*/
+  page('/MPE68085', user)
+  page('/MPE1613', user)
+  page('/MPE1618', user)
+  page('/MPE3236', user)
+  page('/MPE1631', user)
+  page('/MPE1608', user)
+  page('/MPE68166', user)
+  page('/MPE7155', user)    
+  page('/MPE68126', user)
+  page('/MPE1621', user)
+  page('/MPE1902', user)  
+  page('*', notFound)
+  page()
+
+  function user() {
+    document.getElementById('test').textContent = 'hola';
+  }
+
+   function notFound() {
+    document.getElementById('test').textContent = 'not found';
+  }
+
   // inicializando y configurando sidebar materialize
   $(".button-collapse").sideNav();
   $('.button-collapse#shopping-cart').sideNav({
