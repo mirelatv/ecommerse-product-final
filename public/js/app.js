@@ -16,11 +16,29 @@ $(document).ready(function () {
   page()
 
   function user() {
-    document.getElementById('test').textContent = 'hola';
+    let code = $(event.target).attr('data-id');
+    $.ajax({
+      url: `https://api.mercadolibre.com/sites/MPE/search?category=${code}`,
+      success: function (data) {
+        var children = data.results
+        console.log(children);
+        $("#all-products").html('');
+        children.forEach(function (element) {
+          const div = `
+          <div id= ${element.category_id} class="listProductos  card col s12 m3  l3" style="height: 280px; width:250px; margin:8px 9px " >
+            <img src="${element.thumbnail} alt="">
+            <p class="center-align">${element.title}</p>
+            <p class="center-align " style="color: blue;"> costo :${element.price} </p>
+            <p class="center-align">${element.category_id}</p>
+         </div>`
+          $("#all-products").append(div);
+        })
+      }
+    });
   }
 
    function notFound() {
-    document.getElementById('test').textContent = 'not found';
+    document.getElementById('all-products').textContent = 'not found';
   }
 
   // inicializando y configurando sidebar materialize
@@ -29,51 +47,19 @@ $(document).ready(function () {
     edge: 'right',
   });
 
-  //hallando categorias  que  se  colocaran en listas
+
+  // hallando categorias  que  se  colocaran en lista en la version mobile
   $.ajax({
     url: 'https://api.mercadolibre.com/categories/MPE1574',
     success: function (data) {
       var categorias = data.children_categories
       console.log(categorias)
       categorias.forEach(function (element) {
-        const li = `<li  class="lisCategorias" data-id=${element.id}><a href="/${element.id}" class='categorie'>${element.name}</a></li>`
-        // $(".right").append(li);
+        const li = `<li  class="lisCategorias"><a href="/${element.id}" data-id=${element.id} class='categorie'>${element.name}</a></li>`
         $("#mobile-demo").append(li);
       });
-
-    }
-
-  });
-
-  // jalando subcategorias
-  $.ajax({
-    url: 'https://api.mercadolibre.com/sites/MPE/search?category=MPE1574',
-    success: function (data) {
-      var children = data.results
-      console.log(children);
-
-      children.forEach(function (element) {
-        const div = ` <div id= ${element.category_id} class="listProductos  card col s12 m3  l3" style="height: 280px; width:250px; margin:8px 9px " >
-       <img src="${element.thumbnail} alt="">
-       <p class="center-align">${element.title}</p>
-       <p class="center-align " style="color: blue;"> costo :${element.price} </p>
-       <p class="center-align">${element.category_id}</p>
-       </div>`
-        $(".row").append(div);
-        // $(".listProductos").hide();
-
-      })
-
     }
   });
-
-  //evento que relaciona  la categoria  con las subcategorias.
-
-  //$(".lisCategorias").click(function() {
-  // if($(".lisCategorias").attr( "data-id" )=== $(".listProductos").attr("id")){
-  //   $( ".lisProductos" ).show()
-  // }
-  //});
 
   // Inicia Configuración de API PayPal
 
