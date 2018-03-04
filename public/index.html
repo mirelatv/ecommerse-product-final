@@ -8,6 +8,7 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="js/page.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <title>Ecomerse</title>
 </head>
@@ -15,57 +16,131 @@
 <body>
   <header>
     <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Logo</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-          <a href="#" data-activates="slide-out" class="button-collapse show-on-large" id="shopping-cart"><i class="material-icons">shopping_cart</i></a>
-          <ul class="side-nav" id="mobile-demo">
-            <!-- aqui van todas las categorías -->
-          </ul>
-        </div>
-      </nav>
-
-      <ul id="slide-out" class="side-nav">
-        <!-- aqui van todos los productos añadidos al carrito -->
-          <li><a href="#!"><i class="material-icons">attach_money</i>Total: <span id="total">precio</span></a></li>
-          <li><div class="divider"></div></li>          
-          <li><div id="paypal-button"></div></li>
-          <li><div class="divider"></div></li>
-          <li><a class="subheader">pedido</a></li>
-          <li><a class="subheader">pedido</a></li>
-          <li><a class="subheader">pedido</a></li>          
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Logo</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse">
+          <i class="material-icons">menu</i>
+        </a>
+        <a href="#" data-activates="slide-out" class="button-collapse show-on-large" id="shopping-cart">
+          <i class="material-icons">shopping_cart</i>
+        </a>
+        <ul class="side-nav" id="mobile-demo">
+          <li class="lisCategorias" data-id="MPE68085">
+            <a href="/MPE68085">Aberturas</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE1613">
+            <a href="/MPE1613">Baño</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE1618">
+            <a href="/MPE1618">Cocina</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE3236">
+            <a href="/MPE3236">Comedor</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE1631">
+            <a href="/MPE1631">Decoración para el Hogar</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE1608">
+            <a href="/MPE1608">Dormitorio</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE68166">
+            <a href="/MPE68166">Escritorio</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE7155">
+            <a href="/MPE7155">Iluminación para el Hogar</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE68126">
+            <a href="/MPE68126">Seguridad y Vigilancia - Hogar</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE1621">
+            <a href="/MPE1621">Terrazas y Jardín</a>
+          </li>
+          <li class="lisCategorias" data-id="MPE1902">
+            <a href="/MPE1902">Otros</a>
+          </li>
         </ul>
+      </div>
+    </nav>
+
+    <ul id="slide-out" class="side-nav">
+      <!-- aqui van todos los productos añadidos al carrito -->
+      <li>
+        <a href="#!">
+          <i class="material-icons">attach_money</i>Total:
+          <span id="total">precio</span>
+        </a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <div id="paypal-button"></div>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="subheader">pedido</a>
+      </li>
+      <li>
+        <a class="subheader">pedido</a>
+      </li>
+      <li>
+        <a class="subheader">pedido</a>
+      </li>
+    </ul>
 
     <nav id="categories">
       <div class="nav-wrapper">
         <ul class="right hide-on-med-and-down">
-          <!-- aqui van todas las categorías -->          
+          <!-- aqui van todas las categorías -->
         </ul>
       </div>
     </nav>
   </header>
- 
+
   <!-- Contenedor de sección -->
   <div class="container section">
-    <ul class="fatherList"></ul>
-    
+    <p id="test"></p>
+    <ul class="fatherList">
 
+    </ul>
   </div>
 
   <div class="row">
-    
+
   </div>
 
-  </header>
-  
   <!-- API PAYPAL -->
   <script src="https://www.paypalobjects.com/api/checkout.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    /*page('ruta', callback)*/
+    page('/MPE68085', user)
+    page('/MPE1613', user)
+    page('/MPE1618', user)
+    page('/MPE3236', user)
+    page('/MPE1631', user)
+    page('/MPE1608', user)
+    page('/MPE68166', user)
+    page('/MPE7155', user)    
+    page('/MPE68126', user)
+    page('/MPE1621', user)
+    page('/MPE1902', user)  
+    page('*', notFound)
+    page()
 
+    function user() {
+      document.getElementById('test').textContent = 'hola';
+    }
+
+     function notFound() {
+      document.getElementById('test').textContent = 'not found';
+    }
+  </script>
 </body>
 
 </html>

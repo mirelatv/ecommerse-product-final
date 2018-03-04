@@ -9,9 +9,9 @@
   <h1>Trying out page</h1>
   <p></p>
   <ul>
-  	<li><a href="/">/</a></li>
+  	<li><a href="/" id="index">/</a></li>
   	<li><a href="#whoop">#whoop</a></li>
-  	<li><a href="/about">/about</a></li>
+  	<li><a href="/about" id="about">/about</a></li>
   	<li><a href="/user">/user</a></li>
   	<li><a href="/user/me">/user/me</a></li>
   	<li><a href="/not-fount?foo=bar">/not-found</a></li>
@@ -26,10 +26,12 @@
     page()
 
     function index() {
+
       document.querySelector('p')
         .textContent = 'viewing index'
     }
     function about() {
+      console.log(event.target);
       document.querySelector('p')
         .textContent = 'viewing about'
     }

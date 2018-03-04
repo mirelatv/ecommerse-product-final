@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-  // configurando sidebar materialize
+  // inicializando y configurando sidebar materialize
   $(".button-collapse").sideNav();
   $('.button-collapse#shopping-cart').sideNav({
-    edge: 'right', // Choose the horizontal origin
+    edge: 'right',
   });
 
   //hallando categorias  que  se  colocaran en listas
@@ -13,10 +13,11 @@ $(document).ready(function () {
       var categorias = data.children_categories
       console.log(categorias)
       categorias.forEach(function (element) {
-        const li = `<li  class="lisCategorias" data-id=${element.id}><a href="/${element.id}">${element.name}</a></li>`
-        $(".right").append(li);
+        const li = `<li  class="lisCategorias" data-id=${element.id}><a href="/${element.id}" class='categorie'>${element.name}</a></li>`
+        // $(".right").append(li);
         $("#mobile-demo").append(li);
       });
+
     }
 
   });
@@ -52,6 +53,7 @@ $(document).ready(function () {
   //});
 
   // Inicia Configuración de API PayPal
+
   paypal.Button.render({
     env: 'production', // Or 'sandbox',
     client: {
@@ -89,8 +91,3 @@ $(document).ready(function () {
 
   // Termina Configuración de API PayPal  
 })
-
-
-// ITERANDO CATEGORIAS
-
-//
