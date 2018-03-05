@@ -7,21 +7,25 @@ $(document).ready(function () {
   $.ajax({
     url: 'https://api.mercadolibre.com/categories/MPE1574',
     success: function (data) {
-      var categorias = data.children_categories
-      console.log(categorias)
+      const categorias = data.children_categories
+     // console.log(categorias);
+     
       categorias.forEach(function (element) {
         const li = `<li  class="lisCategorias" data-id=${element.id}><a href="">${element.name}</a></li>`
         $(".right").append(li);
+   
+       ;
       });
     }
 
   });
+  
   // jalando subcategorias
   $.ajax({
     url: 'https://api.mercadolibre.com/sites/MPE/search?category=MPE1574',
     success: function (data) {
-      var children = data.results
-      console.log(children);
+      const children = data.results
+      //console.log(children);
 
       children.forEach(function (element) {
         const div = ` <div id= ${element.category_id} class="listProductos  card col s12 m3  l3" style="height: 280px; width:250px; margin:8px 9px " >
@@ -38,20 +42,19 @@ $(document).ready(function () {
     }
   });
 
-  //evento que relaciona  la categoria  con las subcategorias.
+ // evento que relaciona  la categoria  con las subcategorias.
   
-  //$(".lisCategorias").click(function() {
-   // if($(".lisCategorias").attr( "data-id" )=== $(".listProductos").attr("id")){
-   //   $( ".lisProductos" ).show()
-   // }
-  //});
+  $(".lisCategorias").click(function() { 
+    if($(".lisCategorias").attr( "id" )=== $(".listProductos").attr("catergory_id")){
+     $( ".lisProductos" ).show()}
+     else{$(".listProductos").hide()}
+    
+  });
 
 
 })
 
 
-// ITERANDO CATEGORIAS
 
-//
 
 
