@@ -1,6 +1,9 @@
+#categories {
+    display: none;
+}
 
-.price{
-    color:#b71c1c;
-    height: 
-    width: ;
+@media (min-width: 768px) {
+    #categories, #shopping-cart {
+        display: block;
+    }
 }
